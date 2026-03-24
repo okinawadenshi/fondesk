@@ -261,19 +261,25 @@
       font-size: 0.97rem;
       line-height: 1.7;
     }
-    .step-img-wrap {
-      margin-top: 14px;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1.5px dashed #ffc0a0;
-      background: #fff8f4;
-      
-    .step-img-wrap img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 10px;
-    }
+   .step-img-wrap {
+  margin-top: 14px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1.5px dashed #ffc0a0;
+  background: #fff8f4;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 10px;
+}
     .step-img-placeholder {
       color: #ffb48a;
       font-size: 0.88rem;
@@ -528,52 +534,37 @@
     <ol class="step-list" style="margin-top: 6px;">
 
       <!-- ① -->
-      <li class="step-item">
-        <div class="step-header">
-          <div class="step-num">①</div>
-          <div class="step-text">公式サイトからアカウント登録を進めます。</div>
-        </div>
-        <div class="step-img-wrap">
-         <img src="1fondesk.png" alt="アカウント登録画面" class="step-img">
-          <div class="step-img-placeholder">
-            <span>🖼️</span>
-            ここに画像を設置<br>
-            <small>（例: step1.jpg）</small>
-          </div>
-        </div>
-      </li>
+<li class="step-item">
+  <div class="step-header">
+    <div class="step-num">①</div>
+    <div class="step-text">公式サイトからアカウント登録を進めます。</div>
+  </div>
+  <div class="step-img-wrap">
+    <img src="1fondesk.png" alt="アカウント登録画面" class="step-img">
+  </div>
+</li>
 
-      <!-- ② -->
-      <li class="step-item">
-        <div class="step-header">
-          <div class="step-num">②</div>
-          <div class="step-text">メールが届くので、手順に従って企業情報や住所などの情報を入力します。</div>
-        </div>
-        <div class="step-img-wrap">
-          <img src="2fondesk.png" alt="企業情報入力画面" class="step-img">
-          <div class="step-img-placeholder">
-            <span>🖼️</span>
-            ここに画像を設置<br>
-            <small>（例: step2.jpg）</small>
-          </div>
-        </div>
-      </li>
+<!-- ② -->
+<li class="step-item">
+  <div class="step-header">
+    <div class="step-num">②</div>
+    <div class="step-text">メールが届くので、手順に従って企業情報や住所などの情報を入力します。</div>
+  </div>
+  <div class="step-img-wrap">
+    <img src="2fondesk.png" alt="企業情報入力画面" class="step-img">
+  </div>
+</li>
 
-      <!-- ③ -->
-      <li class="step-item">
-        <div class="step-header">
-          <div class="step-num">③</div>
-          <div class="step-text">紹介コード入力欄で、紹介コード <strong>【CS310-221468】</strong> を入力</div>
-        </div>
-        <div class="step-img-wrap">
-          <img src="3fondesk.png" alt="紹介コード入力画面" class="step-img">
-          <div class="step-img-placeholder">
-            <span>🖼️</span>
-            ここに画像を設置<br>
-            <small>（例: step3.jpg）</small>
-          </div>
-        </div>
-      </li>
+<!-- ③ -->
+<li class="step-item">
+  <div class="step-header">
+    <div class="step-num">③</div>
+    <div class="step-text">紹介コード入力欄で、紹介コード <strong>【CS310-221468】</strong> を入力</div>
+  </div>
+  <div class="step-img-wrap">
+    <img src="3fondesk.png" alt="紹介コード入力画面" class="step-img">
+  </div>
+</li>
 
       <!-- ④ 画像なし -->
       <li class="step-item">
