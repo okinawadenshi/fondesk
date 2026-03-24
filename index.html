@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fondeskについて【紹介コードあり！】</title>
+  <style>
+    /* ===== Base ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      background: #fff9f5;
+      color: #333;
+      line-height: 1.8;
+    }
+
+    /* ===== Header ===== */
+    header {
+      background: linear-gradient(135deg, #ff7eb3 0%, #ff9a5c 100%);
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: -60px;
+      width: 220px; height: 220px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 50%;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; right: -40px;
+      width: 280px; height: 280px;
+      background: rgba(255,255,255,0.10);
+      border-radius: 50%;
+    }
+    header h1 {
+      font-size: clamp(1.5rem, 5vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      position: relative;
+      z-index: 1;
+    }
+    header p.subtitle {
+      margin-top: 10px;
+      font-size: 1rem;
+      opacity: 0.92;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== Container ===== */
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* ===== TOC ===== */
+    .toc {
+      background: #fff;
+      border: 2px solid #ffb3d1;
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin: 40px 0 36px;
+      box-shadow: 0 4px 18px rgba(255,126,179,0.10);
+    }
+    .toc h2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.05rem;
+      color: #e85d96;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+    .toc ol {
+      padding-left: 20px;
+    }
+    .toc li {
+      margin: 6px 0;
+    }
+    .toc a {
+      color: #ff6fa8;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .toc a:hover { color: #e85d96; text-decoration: underline; }
+
+    /* ===== Section ===== */
+    section {
+      margin-bottom: 52px;
+    }
+    h2.section-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #e85d96;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid #ffd6e8;
+    }
+    h2.section-title .icon {
+      font-size: 1.4rem;
+    }
+
+    p { margin-bottom: 14px; }
+
+    /* ===== Aside / Card ===== */
+    .card {
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 22px 0;
+    }
+    .card-pink {
+      background: #fff0f7;
+      border-left: 5px solid #ff7eb3;
+    }
+    .card-orange {
+      background: #fff5ee;
+      border-left: 5px solid #ff9a5c;
+    }
+    .card-yellow {
+      background: #fffde7;
+      border-left: 5px solid #ffd600;
+    }
+    .card-green {
+      background: #f0fff4;
+      border-left: 5px solid #48bb78;
+    }
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #333;
+    }
+    .card ul {
+      padding-left: 18px;
+    }
+    .card ul li {
+      margin: 6px 0;
+    }
+
+    /* ===== Price table ===== */
+    .price-block {
+      background: #fff;
+      border: 2px solid #ffe0b2;
+      border-radius: 16px;
+      padding: 28px;
+      margin: 20px 0;
+      box-shadow: 0 2px 14px rgba(255,154,92,0.10);
+    }
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .price-label {
+      font-size: 0.92rem;
+      color: #888;
+      min-width: 110px;
+    }
+    .price-value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #ff7a00;
+    }
+    .price-note {
+      font-size: 0.82rem;
+      color: #aaa;
+      margin-top: 2px;
+    }
+    .divider { border: none; border-top: 1px dashed #ffd6b0; margin: 16px 0; }
+    .price-total {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #e85d96;
+      text-align: right;
+    }
+
+    /* ===== Flow steps ===== */
+    .flow {
+      counter-reset: step;
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+    .flow li {
+      counter-increment: step;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .flow li::before {
+      content: counter(step);
+      background: linear-gradient(135deg, #ff7eb3, #ff9a5c);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1rem;
+      min-width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ===== Step cards (registration) ===== */
+    .step-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+      counter-reset: stepnum;
+    }
+    .step-item {
+      counter-increment: stepnum;
+      background: #fff;
+      border-radius: 14px;
+      border: 1.5px solid #ffd6b0;
+      padding: 20px 22px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 10px rgba(255,154,92,0.08);
+    }
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .step-num {
+      background: linear-gradient(135deg, #ff7eb3, #ff9a5c);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1rem;
+      min-width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-text {
+      font-size: 0.97rem;
+      line-height: 1.7;
+    }
+    .step-img-wrap {
+      margin-top: 14px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1.5px dashed #ffc0a0;
+      background: #fff8f4;
+      min-height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+    }
+    .step-img-placeholder {
+      color: #ffb48a;
+      font-size: 0.88rem;
+      text-align: center;
+      padding: 32px 20px;
+      line-height: 1.9;
+    }
+    .step-img-placeholder span {
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 6px;
+    }
+
+    /* ===== Referral code box ===== */
+    .code-box {
+      background: linear-gradient(135deg, #ff7eb3 0%, #ff9a5c 100%);
+      color: #fff;
+      border-radius: 18px;
+      padding: 34px 30px;
+      text-align: center;
+      box-shadow: 0 6px 28px rgba(255,126,179,0.30);
+      margin: 24px 0;
+    }
+    .code-box .label {
+      font-size: 0.95rem;
+      opacity: 0.92;
+      margin-bottom: 10px;
+    }
+    .code-box .code {
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      background: rgba(255,255,255,0.25);
+      display: inline-block;
+      padding: 10px 28px;
+      border-radius: 10px;
+      margin: 8px 0 14px;
+    }
+    .code-box .discount {
+      font-size: 1.1rem;
+      font-weight: 700;
+      opacity: 0.95;
+    }
+
+    /* ===== CTA button ===== */
+    .cta-wrap { text-align: center; margin: 30px 0 10px; }
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff7eb3, #ff9a5c);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.05rem;
+      text-decoration: none;
+      padding: 16px 42px;
+      border-radius: 50px;
+      box-shadow: 0 4px 18px rgba(255,126,179,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(255,126,179,0.45);
+    }
+
+    /* ===== YouTube embed ===== */
+    .video-wrap {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      margin: 22px 0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+    }
+    .video-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background: #333;
+      color: #ccc;
+      text-align: center;
+      padding: 26px 20px;
+      font-size: 0.82rem;
+    }
+    footer a { color: #ff9a5c; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 560px) {
+      .toc { padding: 20px 18px; }
+      .price-block { padding: 20px 16px; }
+      .code-box { padding: 26px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <h1>📞 Fondeskについて</h1>
+  <p class="subtitle">紹介コードで初月 <strong>5,500円割引</strong> あり！</p>
+</header>
+
+<div class="container">
+
+  <!-- ===== TOC ===== -->
+  <nav class="toc" id="top">
+    <h2>📋 目次</h2>
+    <ol>
+      <li><a href="#about">Fondeskとは</a></li>
+      <li><a href="#points">おすすめポイント</a></li>
+      <li><a href="#price">料金について</a></li>
+      <li><a href="#flow">実際の対応の流れ</a></li>
+      <li><a href="#changes">導入後の変化</a></li>
+      <li><a href="#code">紹介コードのご案内</a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <h2 class="section-title"><span class="icon">💬</span>「Fondesk」とは？</h2>
+    <p>
+      「Fondesk」は、会社にかかってきたお問い合わせの電話をオペレーターが代わりに対応し、
+      内容をチャット（Slack・Chatwork・メールなど）で通知してくれるサービスです。
+    </p>
+    <p>
+      必要な電話のみ折り返し対応することで、すべての電話に即座に対応する負担を減らし、
+      業務に集中できる環境を作れます。
+    </p>
+    <p>
+      また、FondeskはAIではなく実際のオペレーター（人）が対応するため、
+      機械的な対応ではなく、お客様に違和感を与えにくい自然な応対が可能です。
+    </p>
+
+    <div class="video-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/p8oKYw27h5Y"
+        title="Fondesk 紹介動画"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ===== POINTS ===== -->
+  <section id="points">
+    <h2 class="section-title"><span class="icon">⭐</span>おすすめポイント</h2>
+    <div class="card card-pink">
+      <h3>💡 ここが便利！</h3>
+      <ul>
+        <li>最短<strong>即日</strong>で利用開始OK</li>
+        <li>工事不要、<strong>既存の電話番号</strong>で利用OK</li>
+        <li>必要な電話だけ対応すればOK</li>
+        <li>問い合わせの内容を社内で確認し、必要な電話へ折り返し対応</li>
+        <li><strong>人が対応</strong>するため、顧客対応の品質を保ちやすい</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== PRICE ===== -->
+  <section id="price">
+    <h2 class="section-title"><span class="icon">💰</span>料金について</h2>
+    <p>Fondeskは、初期費用・オプションなしのシンプルな料金体系です。</p>
+
+    <div class="price-block">
+      <div class="price-row">
+        <span class="price-label">基本料金</span>
+        <span class="price-value">¥10,000</span>
+        <span class="price-note">月額（税別）</span>
+      </div>
+      <div class="price-row">
+        <span class="price-label">従量料金</span>
+        <span class="price-value">¥200</span>
+        <span class="price-note">／件（51件目以降）　※50件までは無料</span>
+      </div>
+      <hr class="divider" />
+      <p style="font-size:0.92rem; color:#888; margin-bottom:10px;">📊 料金イメージ（例）：月間70件の電話の場合</p>
+      <div style="font-size:0.95rem; padding-left:4px;">
+        <div>基本料金：<strong>10,000円</strong></div>
+        <div>従量料金（20件 × 200円）：<strong>4,000円</strong></div>
+      </div>
+      <hr class="divider" />
+      <div class="price-total">👉 合計：14,000円（税別）</div>
+    </div>
+
+    <div class="card card-yellow">
+      <h3>💡 この料金のポイント</h3>
+      <ul>
+        <li>50件までは追加料金なし</li>
+        <li>小規模〜中規模企業でも導入しやすい価格</li>
+        <li>人が対応するサービスとしては非常に低コスト</li>
+      </ul>
+    </div>
+
+    <div class="cta-wrap">
+      <a href="https://www.fondesk.jp/price/" target="_blank" class="cta-btn">
+        📈 料金シミュレーションを試す →
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FLOW ===== -->
+  <section id="flow">
+    <h2 class="section-title"><span class="icon">📞</span>実際の対応の流れ</h2>
+    <ol class="flow">
+      <li>お客様からの問い合わせ電話が自動的に<strong>Fondeskへ転送</strong>される</li>
+      <li>Fondeskのオペレーターが<strong>代わりに電話対応</strong></li>
+      <li>問い合わせ内容が、Fondeskから会社へ<strong>チャット・メールで届く</strong></li>
+      <li>内容を社内で確認し、<strong>必要な電話へ折り返し対応</strong></li>
+    </ol>
+  </section>
+
+  <!-- ===== CHANGES ===== -->
+  <section id="changes">
+    <h2 class="section-title"><span class="icon">😊</span>導入後の弊社での変化</h2>
+    <div class="card card-green">
+      <h3>✨ 実感した効果</h3>
+      <ul>
+        <li>⭐ 営業電話などの対応負担が<strong>軽減</strong></li>
+        <li>⭐ 重要な連絡は内容の確認後にしっかり対応</li>
+        <li>⭐ 電話対応による<strong>業務中断を軽減</strong></li>
+      </ul>
+    </div>
+    <p>
+      さらに、導入前は<strong>「社員以外が電話対応するとクレームが増えるのでは？」</strong>
+      という不安もありましたが、実際にはそのようなトラブルはほとんどなく、スムーズに運用できています。
+    </p>
+    <p>
+      また、社内で電話を受けた場合でも、「内容を聞く → 担当へ取り次ぐ」といった時間が発生しますが、
+      Fondesk導入後はその取り次ぎ自体が不要になり、結果として<strong>残業時間の削減</strong>にもつながっています。
+    </p>
+  </section>
+
+  <!-- ===== CODE ===== -->
+  <section id="code">
+    <h2 class="section-title"><span class="icon">🎉</span>紹介コードのご案内</h2>
+
+    <div class="code-box">
+      <p class="label">下記の紹介コードを入力すると</p>
+      <div class="code">CS310-221468</div>
+      <p class="discount">初月 <strong>5,500円 割引</strong> 🎁</p>
+    </div>
+
+    <div class="card card-orange" style="margin-top: 28px;">
+      <h3>📝 登録手順</h3>
+    </div>
+
+    <ol class="step-list" style="margin-top: 6px;">
+
+      <!-- ① -->
+      <li class="step-item">
+        <div class="step-header">
+          <div class="step-num">①</div>
+          <div class="step-text">公式サイトからアカウント登録を進めます。</div>
+        </div>
+        <div class="step-img-wrap">
+          <!-- 画像を差し替える場合: <img src="画像ファイル名.jpg" alt="アカウント登録画面"> -->
+          <div class="step-img-placeholder">
+            <span>🖼️</span>
+            ここに画像を設置<br>
+            <small>（例: step1.jpg）</small>
+          </div>
+        </div>
+      </li>
+
+      <!-- ② -->
+      <li class="step-item">
+        <div class="step-header">
+          <div class="step-num">②</div>
+          <div class="step-text">メールが届くので、手順に従って企業情報や住所などの情報を入力します。</div>
+        </div>
+        <div class="step-img-wrap">
+          <!-- 画像を差し替える場合: <img src="画像ファイル名.jpg" alt="企業情報入力画面"> -->
+          <div class="step-img-placeholder">
+            <span>🖼️</span>
+            ここに画像を設置<br>
+            <small>（例: step2.jpg）</small>
+          </div>
+        </div>
+      </li>
+
+      <!-- ③ -->
+      <li class="step-item">
+        <div class="step-header">
+          <div class="step-num">③</div>
+          <div class="step-text">紹介コード入力欄で、紹介コード <strong>【CS310-221468】</strong> を入力</div>
+        </div>
+        <div class="step-img-wrap">
+          <!-- 画像を差し替える場合: <img src="画像ファイル名.jpg" alt="紹介コード入力画面"> -->
+          <div class="step-img-placeholder">
+            <span>🖼️</span>
+            ここに画像を設置<br>
+            <small>（例: step3.jpg）</small>
+          </div>
+        </div>
+      </li>
+
+      <!-- ④ 画像なし -->
+      <li class="step-item">
+        <div class="step-header">
+          <div class="step-num">④</div>
+          <div class="step-text">お支払い情報の入力・設定を進めて完了</div>
+        </div>
+      </li>
+
+    </ol>
+
+    <div class="cta-wrap" style="margin-top: 36px;">
+      <a href="https://www.fondesk.jp/" target="_blank" class="cta-btn">
+        🚀 Fondesk 公式サイトへ →
+      </a>
+    </div>
+  </section>
+
+</div><!-- /container -->
+
+<footer>
+  <p>※ 料金・サービス内容は変更になる場合があります。最新情報は <a href="https://www.fondesk.jp/" target="_blank">Fondesk公式サイト</a> をご確認ください。</p>
+</footer>
+
+</body>
+</html>
